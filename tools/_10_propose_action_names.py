@@ -65,8 +65,8 @@ def define_action_names(user_manual_filepath, visually_grounded_elements_filepat
     response = model.chat_with_text(filter_action_prompt)
     """
     # save response into designated filepath
-    with open("temp.txt", "w") as f:
-        f.write(first_round_prompt)
+    #with open("temp.txt", "w") as f:
+    #    f.write(first_round_prompt)
     with open(proposed_actions_filepath, "w") as f:
         f.write(response)
         print(f"Executable actions saved to {proposed_actions_filepath}")
