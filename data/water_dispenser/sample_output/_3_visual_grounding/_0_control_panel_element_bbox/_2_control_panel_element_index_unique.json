@@ -1,0 +1,50 @@
+[
+    {
+        "element_name": "reboil_timer_button",
+        "bboxes": [
+            {
+                "image_name": "0",
+                "bbox_id": [
+                    6
+                ],
+                "reason": "Bounding box 6 encompasses the entire 'REBOIL TIMER' button, which is the correct control element."
+            }
+        ]
+    },
+    {
+        "element_name": "temp_clean_button",
+        "bboxes": [
+            {
+                "image_name": "0",
+                "bbox_id": [
+                    9
+                ],
+                "reason": "Bounding box 9 encompasses the entire 'TEMP CLEAN' button, which is the correct control element."
+            }
+        ]
+    },
+    {
+        "element_name": "unlock_button",
+        "bboxes": [
+            {
+                "image_name": "0",
+                "bbox_id": [
+                    4
+                ],
+                "reason": "The bounding box with index 4 correctly encompasses the unlock button, which is identified by the lock icon on the button."
+            }
+        ]
+    },
+    {
+        "element_name": "pump_button",
+        "bboxes": [
+            {
+                "image_name": "0",
+                "bbox_id": [
+                    5
+                ],
+                "reason": "Bounding box 5 encompasses the entire 'PUMP' button, which is the control element for the pump function."
+            }
+        ]
+    }
+]

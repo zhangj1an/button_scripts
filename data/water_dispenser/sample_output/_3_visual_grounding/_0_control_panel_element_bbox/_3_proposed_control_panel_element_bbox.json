@@ -1,0 +1,94 @@
+[
+    {
+        "element_name": "reboil_timer_button",
+        "bboxes": [
+            {
+                "image_name": "0",
+                "bbox_id": [
+                    6
+                ],
+                "reason": "Bounding box 6 encompasses the entire 'REBOIL TIMER' button, which is the correct control element."
+            }
+        ],
+        "grounded_bboxes": [
+            {
+                "image_name": "0",
+                "bbox": [
+                    0.3439960750146709,
+                    0.524628938759533,
+                    0.4363525464166207,
+                    0.6670559733171133
+                ]
+            }
+        ]
+    },
+    {
+        "element_name": "temp_clean_button",
+        "bboxes": [
+            {
+                "image_name": "0",
+                "bbox_id": [
+                    9
+                ],
+                "reason": "Bounding box 9 encompasses the entire 'TEMP CLEAN' button, which is the correct control element."
+            }
+        ],
+        "grounded_bboxes": [
+            {
+                "image_name": "0",
+                "bbox": [
+                    0.3566560431947492,
+                    0.7103457199499669,
+                    0.44796242891916105,
+                    0.844104150492581
+                ]
+            }
+        ]
+    },
+    {
+        "element_name": "unlock_button",
+        "bboxes": [
+            {
+                "image_name": "0",
+                "bbox_id": [
+                    4
+                ],
+                "reason": "The bounding box with index 4 correctly encompasses the unlock button, which is identified by the lock icon on the button."
+            }
+        ],
+        "grounded_bboxes": [
+            {
+                "image_name": "0",
+                "bbox": [
+                    0.6892586297999639,
+                    0.5553528050979321,
+                    0.7447229536532909,
+                    0.6572797519374681
+                ]
+            }
+        ]
+    },
+    {
+        "element_name": "pump_button",
+        "bboxes": [
+            {
+                "image_name": "0",
+                "bbox_id": [
+                    5
+                ],
+                "reason": "Bounding box 5 encompasses the entire 'PUMP' button, which is the control element for the pump function."
+            }
+        ],
+        "grounded_bboxes": [
+            {
+                "image_name": "0",
+                "bbox": [
+                    0.6203821200961244,
+                    0.6885493699952383,
+                    0.7156864925093007,
+                    0.8497351934510083
+                ]
+            }
+        ]
+    }
+]

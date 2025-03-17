@@ -1,0 +1,4 @@
+Attached is the observed image of the dial: xxxxx. The dial can be set to the following values:
+yyyyy.
+
+Based on the image, what is the current value of the dial? Please return the value as a string, using one of the option listed above. Please follow the given spelling exactly. Use the variable: dial_current_value. Do not return anything else. For example, if a dial can be set to value: "0", "1" or "2", and from the image you can see the dial is set to "1", then return dial_current_value = "1". 

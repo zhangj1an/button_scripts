@@ -1,0 +1,17 @@
+format the input file below by removing redundant explanation text or commenting them out, and save it to a python file to make the file directly executable using a exec() function. Remove example usages, make sure nothing is initiated when I execute the file.
+
+for each input file, add the following line in the header so that some functions can be directly called:
+
+import sys 
+sys.path.append("/data/home/jian/RLS_microwave/utils")
+from _5_build_world_model._0_logic_units import DiscreteVariable, ContinuousVariable, Appliance, Mode, TimeVariable, Variable, VariableTimeInputString, PiecewiseTimeVariable
+
+Double check the Python code syntax is right, for example, the method name should be connected with "_", and not "-". 
+
+The appliance class should always start with:
+
+class Simulator(Appliance)
+
+the name should be Simulator, and not anything else. 
+
+The input file is as follows:

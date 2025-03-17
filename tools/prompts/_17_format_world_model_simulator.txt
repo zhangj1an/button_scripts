@@ -1,0 +1,41 @@
+format the input file below by removing redundant explanation text or commenting them out, and save it to a python file to make the file directly executable using a exec() function. Remove example usages, make sure nothing is initiated when I execute the file.
+
+for each input file, add the following line in the header so that some functions can be directly called:
+
+import sys 
+sys.path.append("/data/home/jian/RLS_microwave/utils")
+from _5_build_world_model._0_logic_units import DiscreteVariable, ContinuousVariable, Appliance, Mode, TimeVariable, Variable, VariableTimeInputString, PiecewiseTimeVariable
+
+Double check the Python code syntax is right, for example, the method name should be connected with "_", and not "-". 
+
+The appliance class should always start with:
+
+class Simulator(Appliance)
+
+the name should be Simulator, and not anything else. 
+
+In the reset function, add the following lines: 
+self.display = ""
+self.feasible = DiscreteVariable(value_range=[-1, 0, 1], current_value=-1)
+
+Then in the reset function, add a variable called self.variables = [self.feasible, self.mode, ...], and the rest of list is all the variables of this appliance. For example, if an appliance has the following variables: self.variable_temp, self.variable_time, self.variable_power, then the variable would be: self.variables = [self.feasible, self.mode, self.variable_temp, self.variable_time, self.variable_power]
+
+Then in the reset function, add a variable called self.variable_names = ["feasible", "mode", ...], the rest of the list is all the string version of the variables of the appliance. In the previous example, self.variable_names = ["feasible", "mode", "variable_temp", "variable_time", "variable_power"]
+
+Then create a function called def update_display(self, item=""), whereby the function consist of a sequence of if else loops. If the variable_power is available, then the display would always be "Off" when power is not turned on. The fallback option whereby no condition is met is to display "On". 
+
+Each loop condition is a string version of a variable name. Then inside the loop, self.display would be updated to be the current value of that variable. For example, if an appliance has the following variables: self.variable_temp, self.variable_time, self.variable_power, then the update_display function would be: 
+
+def update_display(self, item=""):
+        if self.variable_power.get_current_value() == "off":
+            self.display = "Off"
+        elif item == "variable_temp":
+            self.display = f"{self.variable_temp.get_current_value()}"
+        elif item == "variable_time":
+            self.display = f"{self.variable_time.get_current_value()}"
+        else:
+            self.display = "On"
+
+Then, for all the other action functions inside this simulator class, including the reset() function, add a line at the bottom to call self.update_display() with a suitable parameter. But there is no need to include this function in the __init__ function.
+
+The input file is as follows:

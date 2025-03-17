@@ -1,0 +1,82 @@
+[
+    {
+        "action": "press_reboil_timer_button",
+        "bbox_label": [
+            "reboil_timer_button"
+        ],
+        "action_type": "press_button",
+        "bboxes": [
+            {
+                "image_name": "0",
+                "bbox": [
+                    [
+                        0.3439960750146709,
+                        0.524628938759533,
+                        0.4363525464166207,
+                        0.6670559733171133
+                    ]
+                ]
+            }
+        ]
+    },
+    {
+        "action": "press_temp_clean_button",
+        "bbox_label": [
+            "temp_clean_button"
+        ],
+        "action_type": "press_button",
+        "bboxes": [
+            {
+                "image_name": "0",
+                "bbox": [
+                    [
+                        0.3566560431947492,
+                        0.7103457199499669,
+                        0.44796242891916105,
+                        0.844104150492581
+                    ]
+                ]
+            }
+        ]
+    },
+    {
+        "action": "press_unlock_button",
+        "bbox_label": [
+            "unlock_button"
+        ],
+        "action_type": "press_button",
+        "bboxes": [
+            {
+                "image_name": "0",
+                "bbox": [
+                    [
+                        0.6892586297999639,
+                        0.5553528050979321,
+                        0.7447229536532909,
+                        0.6572797519374681
+                    ]
+                ]
+            }
+        ]
+    },
+    {
+        "action": "press_pump_button",
+        "bbox_label": [
+            "pump_button"
+        ],
+        "action_type": "press_button",
+        "bboxes": [
+            {
+                "image_name": "0",
+                "bbox": [
+                    [
+                        0.6203821200961244,
+                        0.6885493699952383,
+                        0.7156864925093007,
+                        0.8497351934510083
+                    ]
+                ]
+            }
+        ]
+    }
+]

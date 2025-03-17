@@ -1,0 +1,13 @@
+reboil_timer_button : 0
+None
+temp_clean_button : 2
+None
+unlock_button : 4
+pump_button : 5
+reboil_timer_button : 6
+pump_button : 7
+None
+temp_clean_button : 9
+reboil_timer_button : 10
+temp_clean_button : 11
+pump_button : 12
