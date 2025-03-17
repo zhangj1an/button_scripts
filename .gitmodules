@@ -1,0 +1,3 @@
+[submodule "tools/foundation_models/FastSAM"]
+	path = tools/foundation_models/FastSAM
+	url = https://github.com/CASIA-IVA-Lab/FastSAM.git
