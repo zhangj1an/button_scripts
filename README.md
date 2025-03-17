@@ -9,7 +9,6 @@
 ## Sample Action Grounding Result
 ![Sample action grounding result](data/water_dispenser/sample_output/_3_visual_grounding/_1_action_names/_3_visualised_proposed_actions.png)
 
-
 ---
 
 ## Required Inputs
@@ -40,10 +39,19 @@ data/{water_dispenser}/output_{0}   # (0 is the number from the observation file
 
 ---
 
-## Prerequisite: Launch OWLv2 for Detecting Control Panel BBoxes
-This step must be completed before running `ground_action.py`.
+## Prerequisite:
+These steps must be completed before running `ground_action.py`.
 
-### 1. Start OWLv2 API
+### 1. Clone this repo
+Run the following command to clone the repository:
+
+```bash
+git clone --recurse-submodules https://github.com/zhangj1an/button_scripts.git
+```
+
+Check that the **FastSAM** repo is downloaded as a submodule under `tools/foundation_models/FastSAM`.
+
+### 2. Start OWLv2 API
 Navigate to the `tools/foundation_models` directory and run:
 
 ```bash
@@ -59,14 +67,14 @@ srun -u -o "api-owlv2-log.out" -w crane5 --mem=20000 --gres=gpu:1 --cpus-per-tas
 
 ---
 
-## Add API Key to GPT-4o Model
+### 3. Add API Key to GPT-4o Model
 Edit `tools/foundation_models/gpt_4o_model.py` and update **line 19**:
 
 ```python
 os.environ["OPENAI_API_KEY"] = "<your-api-key>"
 ```
 
-> Note:  
+> **Note:**  
 > - `tools/foundation_models/claude_sonnet_model.py` is also referenced in `resolve_duplicate_bbox_id_for_one_instance()`,  
 >   but it is currently unused. Unsure if an API key is needed there.
 
@@ -78,6 +86,4 @@ From the **root directory**, execute:
 ```bash
 srun -u -o "log.out" -w crane2 --mem=20000 --gres=gpu:1 --cpus-per-task=8 --job-name "vlm" python3 ground_actions.py
 ```
-
-
 

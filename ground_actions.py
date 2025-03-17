@@ -114,7 +114,7 @@ def ground_action_names(parameter_dict):
 
 
 
-def ground_control_panel_elements(parameter_dict, control_panel_image_index):
+def ground_control_panel_elements(parameter_dict):
     print("Detecting bboxes from control panel image")
     process_image(image_path = parameter_dict["control_panel_image_filepath"], bbox_savepath = parameter_dict["bboxes_on_control_panel_filepath"], detected_image_path=parameter_dict["bboxes_on_control_panel_visualisation_filepath"], validity_save_path=parameter_dict["validity_control_panel_folder"])
     print("results saved in ", parameter_dict["bboxes_on_control_panel_filepath"], "\n")
@@ -158,5 +158,5 @@ if __name__ == "__main__":
     parameter_dict = prepare_directories(root_dir, appliance_type, control_panel_image_index)
     process_input_files(parameter_dict)
     extract_control_panel_element_names(parameter_dict)
-    ground_control_panel_elements(parameter_dict, appliance_type, control_panel_image_index)
+    ground_control_panel_elements(parameter_dict)
     ground_action_names(parameter_dict)
