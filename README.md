@@ -1,46 +1,81 @@
 # Steps to Ground Actions on Appliances
 
-#### Prerequisite: Launch OWLv2 for detecting control panel bboxes 
-This file must be run before running the actual `ground_action.py` file.
+## Prerequisite: Launch OWLv2 for Detecting Control Panel BBoxes
+This step must be completed before running `ground_action.py`.
 
-navigate to `tools/foundation_models`, then run 
+### 1. Start OWLv2 API
+Navigate to the `tools/foundation_models` directory and run:
 
-```
-srun -u -o "api-owlv2-log.out" -w crane5 --mem=20000 --gres=gpu:1 --cpus-per-task=4 --time=03:00:00 --job-name "owlv2" uvicorn owlv2_crane5_api:app --host=0.0.0.0 --port=4229 --reload --loop asyncio
-```
-
-Currently the time is set to 3 hours.
-
-Inside the file named `api-owlv2-log.out`, this print statement shows the OWLv2 is ready: "Application startup complete." 
-
-#### Add API key to GPT-4o model 
-open file `tools/foundation_models/gpt_4o_model.py`, fill in line 19:
-
-```
-os.environ["OPENAI_API_KEY"] = ""
+```bash
+srun -u -o "api-owlv2-log.out" -w crane5 --mem=20000 --gres=gpu:1 --cpus-per-task=4 --time=03:00:00 --job-name "owlv2" \
+    uvicorn owlv2_crane5_api:app --host=0.0.0.0 --port=4229 --reload --loop asyncio
 ```
 
-`tools/foundation_models/claude_sonnet_model.py` is also called in `resolve_duplicate_bbox_id_for_one_instance()`, but is not used. Not sure if needs to add API key.
+- The job is set to run for **3 hours**.
+- Check `api-owlv2-log.out` for this message to confirm that OWLv2 is ready:
+  ```
+  Application startup complete.
+  ```
 
-#### Required inputs
-The appliance require user manual and an observation file with png extension. Put it in `data/{water_dispenser}/_0_input`. 
+---
 
-Sample user manual file: `_0_pdf.pdf` (can be any filename)
-Sample observation file: `0.png` (should be an index)
+## Add API Key to GPT-4o Model
+Edit `tools/foundation_models/gpt_4o_model.py` and update **line 19**:
 
-
-
-#### Output formats
-
-The output folder is at `data/{water_dispenser}/output_{0}` (0 is the number from observation file name).
-
-The bounding box of the grounded actions is located at `{output_folder}/_3_visual_grounding/_1_action_names/_2_proposed_action_bbox.json`
-
-#### Ground Actions 
-at root directory, run 
-
-```
-srun -u -o "log.out" -w crane2 --mem=20000 --gres=gpu:1 --cpus-per-task=8 --job-name “vlm” python3 ground_actions.py
+```python
+os.environ["OPENAI_API_KEY"] = "<your-api-key>"
 ```
 
-![Sample grounding result](data/water_dispenser/sample_output/_3_visual_grounding/_1_action_names/_3_visualised_proposed_actions.png)
+> Note:  
+> - `tools/foundation_models/claude_sonnet_model.py` is also referenced in `resolve_duplicate_bbox_id_for_one_instance()`,  
+>   but it is currently unused. Unsure if an API key is needed there.
+
+---
+
+## Required Inputs
+Each appliance requires a **user manual** and an **observation image**. Place them in:
+
+```
+data/{water_dispenser}/_0_input
+```
+
+### File Naming:
+- **User manual**: `_0_pdf.pdf` (can have any filename)
+- **Observation image**: `0.png` (should be an index)
+
+---
+
+## Output Formats
+Outputs are saved in:
+
+```
+data/{water_dispenser}/output_{0}   # (0 is the number from the observation file name)
+```
+
+### Key Output File:
+- **Grounded Action Bounding Box**:  
+  ```
+  {output_folder}/_3_visual_grounding/_1_action_names/_2_proposed_action_bbox.json
+  ```
+
+---
+
+## Run Ground Actions
+From the **root directory**, execute:
+
+```bash
+srun -u -o "log.out" -w crane2 --mem=20000 --gres=gpu:1 --cpus-per-task=8 --job-name "vlm" python3 ground_actions.py
+```
+
+---
+
+## Sample Button Detection Result 
+![Sample button detection result](data/water_dispenser/sample_output/_2_control_panel_images/_1_ground_control_panel_elements/_3_bboxes_on_control_panel_visualisation.png)
+
+## Sample Button Grounding Result 
+![Sample button grounding result](data/water_dispenser/sample_output/_3_visual_grounding/_0_control_panel_element_bbox/_4_visualised_proposed_control_panel_element_bbox.png)
+
+## Sample Action Grounding Result
+![Sample action grounding result](data/water_dispenser/sample_output/_3_visual_grounding/_1_action_names/_3_visualised_proposed_actions.png)
+
+
