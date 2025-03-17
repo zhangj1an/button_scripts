@@ -1,5 +1,45 @@
 # Steps to Ground Actions on Appliances
 
+## Sample Button Detection Result 
+![Sample button detection result](data/water_dispenser/sample_output/_2_control_panel_images/_1_ground_control_panel_elements/_3_bboxes_on_control_panel_visualisation.png)
+
+## Sample Button Grounding Result 
+![Sample button grounding result](data/water_dispenser/sample_output/_3_visual_grounding/_0_control_panel_element_bbox/_4_visualised_proposed_control_panel_element_bbox.png)
+
+## Sample Action Grounding Result
+![Sample action grounding result](data/water_dispenser/sample_output/_3_visual_grounding/_1_action_names/_3_visualised_proposed_actions.png)
+
+
+---
+
+## Required Inputs
+Each appliance requires a **user manual** and an **observation image**. Place them in:
+
+```
+data/{water_dispenser}/_0_input
+```
+
+### File Naming:
+- **User manual**: `_0_pdf.pdf` (can have any filename)
+- **Observation image**: `0.png` (should be an index)
+
+---
+
+## Output Formats
+Outputs are saved in:
+
+```
+data/{water_dispenser}/output_{0}   # (0 is the number from the observation file name)
+```
+
+### Key Output File:
+- **Grounded Action Bounding Box**:  
+  ```
+  {output_folder}/_3_visual_grounding/_1_action_names/_2_proposed_action_bbox.json
+  ```
+
+---
+
 ## Prerequisite: Launch OWLv2 for Detecting Control Panel BBoxes
 This step must be completed before running `ground_action.py`.
 
@@ -32,34 +72,6 @@ os.environ["OPENAI_API_KEY"] = "<your-api-key>"
 
 ---
 
-## Required Inputs
-Each appliance requires a **user manual** and an **observation image**. Place them in:
-
-```
-data/{water_dispenser}/_0_input
-```
-
-### File Naming:
-- **User manual**: `_0_pdf.pdf` (can have any filename)
-- **Observation image**: `0.png` (should be an index)
-
----
-
-## Output Formats
-Outputs are saved in:
-
-```
-data/{water_dispenser}/output_{0}   # (0 is the number from the observation file name)
-```
-
-### Key Output File:
-- **Grounded Action Bounding Box**:  
-  ```
-  {output_folder}/_3_visual_grounding/_1_action_names/_2_proposed_action_bbox.json
-  ```
-
----
-
 ## Run Ground Actions
 From the **root directory**, execute:
 
@@ -67,15 +79,5 @@ From the **root directory**, execute:
 srun -u -o "log.out" -w crane2 --mem=20000 --gres=gpu:1 --cpus-per-task=8 --job-name "vlm" python3 ground_actions.py
 ```
 
----
-
-## Sample Button Detection Result 
-![Sample button detection result](data/water_dispenser/sample_output/_2_control_panel_images/_1_ground_control_panel_elements/_3_bboxes_on_control_panel_visualisation.png)
-
-## Sample Button Grounding Result 
-![Sample button grounding result](data/water_dispenser/sample_output/_3_visual_grounding/_0_control_panel_element_bbox/_4_visualised_proposed_control_panel_element_bbox.png)
-
-## Sample Action Grounding Result
-![Sample action grounding result](data/water_dispenser/sample_output/_3_visual_grounding/_1_action_names/_3_visualised_proposed_actions.png)
 
 
